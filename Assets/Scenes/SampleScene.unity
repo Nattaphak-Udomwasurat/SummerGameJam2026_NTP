@@ -373,8 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d2c72a24efc9740a1bd8cf40e3ffc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wet: 1
-  playerWet: {fileID: 0}
 --- !u!1 &280691751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2808,6 +2806,7 @@ GameObject:
   - component: {fileID: 1744962600}
   - component: {fileID: 1744962601}
   - component: {fileID: 1744962602}
+  - component: {fileID: 1744962603}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2896,9 +2895,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 811d0af08ef8f404fbf6fb3feb234d34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d594f41b852d4542917ac9cd6c47beb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 2}
@@ -2960,7 +2959,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.8, y: 2.8633332}
+    oldSize: {x: 1.86, y: 2.83}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3136,7 +3135,7 @@ MonoBehaviour:
   throwing: {fileID: 1744962601}
   playerTakeWet: {fileID: 1744962598}
   spriteRenderer: {fileID: 1744962592}
-  normalSprite: {fileID: 21300000, guid: 811d0af08ef8f404fbf6fb3feb234d34, type: 3}
+  normalSprite: {fileID: 21300000, guid: 9d594f41b852d4542917ac9cd6c47beb, type: 3}
   pangHaamYardSprite: {fileID: 21300000, guid: 116710d1a1382ea428c1dc390d6f2b41, type: 3}
   wetSprite: {fileID: 21300000, guid: 00d8f533c371f574da64f08b1091c39d, type: 3}
   drinkingSprite: {fileID: 21300000, guid: c1109c500eda76f4a9554efd3ca06496, type: 3}
@@ -3217,6 +3216,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1744962592}
   offset: 0
+--- !u!114 &1744962603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744962589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a19b37d1cc6554ab5604cb85522bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimationSprite:
+  - {fileID: 21300000, guid: 985ae5bd12a1e18468ec1481a090a644, type: 3}
+  - {fileID: 21300000, guid: 9d594f41b852d4542917ac9cd6c47beb, type: 3}
+  PlayerSprite: {fileID: 1744962592}
+  delay: 0.009
 --- !u!1 &1759466236
 GameObject:
   m_ObjectHideFlags: 0
