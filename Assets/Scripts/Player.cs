@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
     private void HandleNormal()
     {
-        spriteRenderer.sprite = normalSprite;
+       // spriteRenderer.sprite = normalSprite;
     }
 
     private void HandleTakeWet()
