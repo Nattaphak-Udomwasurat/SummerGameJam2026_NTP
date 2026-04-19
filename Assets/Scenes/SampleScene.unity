@@ -2807,6 +2807,7 @@ GameObject:
   - component: {fileID: 1744962601}
   - component: {fileID: 1744962602}
   - component: {fileID: 1744962603}
+  - component: {fileID: 1744962604}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3232,7 +3233,29 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 985ae5bd12a1e18468ec1481a090a644, type: 3}
   - {fileID: 21300000, guid: 9d594f41b852d4542917ac9cd6c47beb, type: 3}
   PlayerSprite: {fileID: 1744962592}
-  delay: 0.009
+  delayBefore: 0.09
+  delayAfter: 0.09
+--- !u!95 &1744962604
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744962589}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f68911626da11334392c721347b733ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1759466236
 GameObject:
   m_ObjectHideFlags: 0
