@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemySO : ScriptableObject
 {
     public string enemyName;
-    public int moveSpeed;
+    public float moveSpeed;
     public float awarenessRadian;
     public float splashingRadian;
 }

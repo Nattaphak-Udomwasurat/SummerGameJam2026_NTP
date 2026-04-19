@@ -1,35 +1,54 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class KidBehavior : MonoBehaviour
+enum State
+{
+    Patrol,
+    Chase,
+    Attack
+}
+public class SexyGirlBehavior : MonoBehaviour
 {
     [SerializeField] public EnemySO enemy;
-    [SerializeField] public Transform player;
-    [SerializeField] public Transform noticePoint;
-    [SerializeField] private Transform splashPoint;
-    [SerializeField] private float splashForce = 7f;
+    [SerializeField] private Transform player;
     [SerializeField] GameObject waterPrefab;
     [SerializeField] GameObject noticePrefab;
-    [SerializeField] private float attackChance = 0.7f; 
+
+    [Header("Attack")]
+    [SerializeField] private float noticeTime = 0.3f;
+    [SerializeField] private float splashForce = 7f;
+    [SerializeField] private Transform splashPoint;
+    [SerializeField] private Transform noticePoint;
+
+    private Vector2 patrolTarget;
+    private State currentState;
+
+    [SerializeField] private Transform pointA;
+    [SerializeField] private Transform pointB;
+
+    [SerializeField] private float attackChance = 0.7f;
     [SerializeField] private Vector2 splashDelayRange = new Vector2(0.2f, 1.2f);
 
-    [SerializeField] private float noticeTime = 0.2f;
-
-    private bool hasAttacked = false;
-    private bool isChecking = false;
-    private bool decidedToAttack = false; 
-    private bool willAttack = false;      
-    private bool isWaitingToSplash = false;
+    private Transform currentTarget;
 
     private PangHaamYard playerBlock;
 
-    private void Start()
+    private bool decidedToAttack = false;
+    private bool willAttack = false;
+    private bool isWaitingToSplash = false;
+    private bool hasAttacked = false;
+    private bool isAttacking = false;
+
+    void Start()
     {
+
+        currentTarget = pointA;
+
         if (player != null)
             playerBlock = player.GetComponent<PangHaamYard>();
     }
-
-    private void Update()
+    void Update()
     {
         if (enemy == null || player == null || hasAttacked) return;
 
@@ -41,16 +60,64 @@ public class KidBehavior : MonoBehaviour
             DecideAttack();
         }
 
-        // 💣 Phase 2: ถ้าจะโจมตี → รอเข้า splash range
-        if (willAttack && dist <= enemy.splashingRadian && !isChecking && !isWaitingToSplash)
+        if (dist <= enemy.splashingRadian && willAttack)
         {
-            StartCoroutine(PrepareSplash());
+            currentState = State.Attack;
+        }
+        else if (dist <= enemy.awarenessRadian && willAttack)
+        {
+            currentState = State.Chase;
+        }
+        else
+        {
+            currentState = State.Patrol;
+        }
+
+        // 🎮 State Behavior
+        switch (currentState)
+        {
+            case State.Patrol:
+                Patrol();
+                break;
+
+            case State.Chase:
+                Chase();
+                break;
+
+            case State.Attack:
+                if (willAttack && dist <= enemy.splashingRadian && !isAttacking && !isWaitingToSplash)
+                {
+                    StartCoroutine(PrepareSplash());
+                }
+                break;
         }
     }
 
-    private IEnumerator SplashCheck()
+    void Patrol()
     {
-        isChecking = true;
+        MoveTo(currentTarget.position);
+
+        if (Vector2.Distance(transform.position, currentTarget.position) < 0.2f)
+        {
+
+            currentTarget = currentTarget == pointA ? pointB : pointA;
+        }
+    }
+
+    void Chase()
+    {
+        MoveTo(player.position);
+    }
+
+    void MoveTo(Vector2 target)
+    {
+        Vector2 dir = (target - (Vector2)transform.position).normalized;
+        transform.position += (Vector3)(dir * enemy.moveSpeed * Time.deltaTime);
+    }
+
+    IEnumerator AttackRoutine()
+    {
+        isAttacking = true;
 
         GameObject notice = Instantiate(noticePrefab, noticePoint.position, Quaternion.identity);
 
@@ -84,17 +151,16 @@ public class KidBehavior : MonoBehaviour
             yield break;
         }
 
-        SplashWater();
+        Splash();
         hasAttacked = true;
     }
 
-    private void SplashWater()
+    void Splash()
     {
         Vector2 dir = (player.position - splashPoint.position).normalized;
 
         GameObject water = Instantiate(waterPrefab, splashPoint.position, Quaternion.identity);
 
-        // 🔥 หมุนให้หันไปทาง player
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         water.transform.rotation = Quaternion.Euler(0, 0, angle);
 
@@ -123,7 +189,7 @@ public class KidBehavior : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        StartCoroutine(SplashCheck());
+        StartCoroutine(AttackRoutine());
     }
 
     private void OnDrawGizmos()

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PangHaamYard : MonoBehaviour
 {
     public bool IsBlocking { get; private set; }
+    public float lastBlockTime { get; private set; }
 
     // 🔥 Event
     public event Action OnBlockStart;
@@ -46,12 +47,15 @@ public class PangHaamYard : MonoBehaviour
     private IEnumerator BlockRoutine()
     {
         IsBlocking = true;
-        OnBlockStart?.Invoke(); // 🔥 ยิง event
+
+        lastBlockTime = Time.time; // 🔥 บันทึกเวลาที่เริ่ม block
+
+        OnBlockStart?.Invoke();
 
         yield return new WaitForSeconds(blockDuration);
 
         IsBlocking = false;
-        OnBlockEnd?.Invoke(); // 🔥 ยิง event
+        OnBlockEnd?.Invoke();
     }
 
     private void UseCharge()
@@ -62,6 +66,13 @@ public class PangHaamYard : MonoBehaviour
 
         if (rechargeRoutine == null)
             rechargeRoutine = StartCoroutine(RechargeRoutine());
+    }
+    public void RestoreCharge(int amount)
+    {
+        currentCharges += amount;
+        currentCharges = Mathf.Clamp(currentCharges, 0, maxCharges);
+
+        OnChargeChanged?.Invoke(currentCharges, maxCharges);
     }
 
     private IEnumerator RechargeRoutine()
