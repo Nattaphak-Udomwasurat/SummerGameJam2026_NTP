@@ -4,6 +4,7 @@ using UnityEngine;
 public class KidBehavior : MonoBehaviour
 {
     [SerializeField] public EnemySO enemy;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] public Transform player;
     [SerializeField] public Transform noticePoint;
     [SerializeField] private Transform splashPoint;
@@ -31,17 +32,20 @@ public class KidBehavior : MonoBehaviour
 
     private void Update()
     {
+        FacePlayer();
+
         if (enemy == null || player == null || hasAttacked) return;
+
 
         float dist = Vector2.Distance(transform.position, player.position);
 
-        // 👀 Phase 1: Awareness → สุ่มว่าจะโจมตีไหม
+        // 👀 Phase 1
         if (dist <= enemy.awarenessRadian && !decidedToAttack)
         {
             DecideAttack();
         }
 
-        // 💣 Phase 2: ถ้าจะโจมตี → รอเข้า splash range
+        // 💣 Phase 2
         if (willAttack && dist <= enemy.splashingRadian && !isChecking && !isWaitingToSplash)
         {
             StartCoroutine(PrepareSplash());
@@ -124,6 +128,19 @@ public class KidBehavior : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         StartCoroutine(SplashCheck());
+    }
+
+    void FacePlayer()
+    {
+        if (player == null || spriteRenderer == null) return;
+
+        float dirX = player.position.x - transform.position.x;
+
+        // กัน jitter ตอนอยู่ตรงกลางพอดี
+        if (Mathf.Abs(dirX) > 0.05f)
+        {
+            spriteRenderer.flipX = dirX < 0;
+        }
     }
 
     private void OnDrawGizmos()

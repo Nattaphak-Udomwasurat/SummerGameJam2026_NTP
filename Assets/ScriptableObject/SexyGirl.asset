@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SexyGirl
   m_EditorClassIdentifier: 
   enemyName: 
-  moveSpeed: 6
-  awarenessRadian: 0
-  splashingRadian: 0
+  moveSpeed: 5.5
+  awarenessRadian: 18
+  splashingRadian: 4

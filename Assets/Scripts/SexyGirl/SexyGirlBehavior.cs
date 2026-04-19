@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum State
-{
-    Patrol,
-    Chase,
-    Attack
-}
+enum State { Patrol, Chase, Attack }
 public class SexyGirlBehavior : MonoBehaviour
 {
     [SerializeField] public EnemySO enemy;
@@ -112,6 +107,15 @@ public class SexyGirlBehavior : MonoBehaviour
     void MoveTo(Vector2 target)
     {
         Vector2 dir = (target - (Vector2)transform.position).normalized;
+
+        // 🔥 หันตามทิศ
+        if (dir.x > 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+        else if (dir.x < 0)
+        {
+
+            transform.localScale = new Vector3(1, 1, 1);
+        }
         transform.position += (Vector3)(dir * enemy.moveSpeed * Time.deltaTime);
     }
 
