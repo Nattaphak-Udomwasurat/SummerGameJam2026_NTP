@@ -22,10 +22,11 @@ public class PlayerAnimation : MonoBehaviour
         if (isMoving)
         {
             timer += Time.deltaTime;
-
-            if (timer >= delay)
+  
+            if (timer > delay)
             {
                 PlayerSprite.sprite = AnimationSprite[1];
+                Debug.Log("Sprite1");
             }
 
             // flip based on horizontal direction
@@ -42,6 +43,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             timer = 0f;
             PlayerSprite.sprite = AnimationSprite[0];
+            Debug.Log("Sprite0");
         }
 
         lastPosition = transform.position;
