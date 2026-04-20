@@ -21,7 +21,8 @@ public class PlayerWet : MonoBehaviour
 
         if (currentWet >= maxWet)
         {
-            GameOver();
+            GameManager.Instance.SetEnding(GameManager.EndingType.WetGameOver);
+            GameManager.Instance.TriggerGameOver();
         }
     }
 

@@ -2,13 +2,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// GameManager — ควบคุมระบบหลักของเกม
-/// จัดการ: Clocking (นับถอยหลัง), Main Menu, Game Over
-/// </summary>
+
 public class GameManager : MonoBehaviour
 {
+    public enum EndingType
+    {
+        None,
+        WetGameOver,      // Scene 1
+        NormalWorker,     // Scene 2
+        LateAndPoor,      // Scene 3
+        Promotion,        // Scene 4
+        CatLover,         // Scene 5
+        StayHome          // Scene 6
+    }
     public static GameManager Instance { get; private set; }
+
+    public EndingType currentEnding = EndingType.None;
 
     // ─── Game State ───────────────────────────────────────────
     public enum GameState
@@ -140,10 +149,10 @@ public class GameManager : MonoBehaviour
     /// <summary>ปุ่ม Start — เริ่มเกม</summary>
     public void StartGame()
     {
+        currentEnding = EndingType.None; // 🔥 สำคัญ
         ChangeState(GameState.Playing);
-        SceneManager.LoadScene(gameScene, LoadSceneMode.Single);
+        SceneManager.LoadScene(gameScene);
         StartClock();
-        Debug.Log("[GameManager] Game Started");
     }
 
     /// <summary>ปุ่ม Credit</summary>
@@ -171,26 +180,24 @@ public class GameManager : MonoBehaviour
 
         ChangeState(GameState.GameOver);
         isClockRunning = false;
-        Debug.Log("[GameManager] Game Over — loading End Scene");
 
-        StartCoroutine(PlayEndSceneRoutine());
+        Debug.Log($"[GameManager] Game Over → Ending: {currentEnding}");
+
+        // 🔥 ใช้ UI แทน Scene
+        EndingController ending = FindObjectOfType<EndingController>();
+
+        if (ending != null)
+        {
+            ending.ShowEnding(currentEnding);
+        }
+        else
+        {
+            Debug.LogError("❌ No EndingController in scene!");
+        }
     }
 
     /// <summary>เล่น End Scene แล้วไป Over Menu</summary>
-    private IEnumerator PlayEndSceneRoutine()
-    {
-        // 1) โหลด End Cut Scene
-        yield return SceneManager.LoadSceneAsync(endCutScene);
 
-        Debug.Log("[GameManager] Playing End Cut Scene...");
-
-        // 2) รอ Cut Scene จบ (ปรับเวลาตาม Cut Scene จริง)
-        yield return new WaitForSeconds(3f);
-
-        // 3) ไป Game Over / Over Menu
-        yield return SceneManager.LoadSceneAsync(gameOverScene);
-        Debug.Log("[GameManager] Over Menu loaded");
-    }
 
     /// <summary>จาก Game Over → กลับ Main Menu</summary>
     public void ReturnToMainMenuFromGameOver()
@@ -201,6 +208,12 @@ public class GameManager : MonoBehaviour
     // ══════════════════════════════════════════════════════════
     //  Helper
     // ══════════════════════════════════════════════════════════
+
+    public void SetEnding(EndingType ending)
+    {
+        if (currentEnding != EndingType.None) return;
+        currentEnding = ending;
+    }
 
     private void ChangeState(GameState newState)
     {

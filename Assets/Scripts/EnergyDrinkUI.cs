@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class EnergyDrinkUI : MonoBehaviour
@@ -7,9 +6,13 @@ public class EnergyDrinkUI : MonoBehaviour
     [Header("Reference")]
     public EnergyDrinkInventory inventory;
 
-    [Header("UI")]
-    public Image icon;
-    public TextMeshProUGUI amountText;
+    [Header("UI Icons")]
+    public Image icon1;
+    public Image icon2;
+
+    [Header("Colors")]
+    public Color activeColor = Color.white;
+    public Color inactiveColor = new Color(1, 1, 1, 0.3f);
 
     void OnEnable()
     {
@@ -28,9 +31,15 @@ public class EnergyDrinkUI : MonoBehaviour
 
     void UpdateUI(int current, int max)
     {
-        amountText.text = "x" + current;
+        // 🔥 reset เป็นเทาก่อน
+        icon1.color = inactiveColor;
+        icon2.color = inactiveColor;
 
-        // ถ้าอยากให้ icon จางตอน 0
-        icon.color = (current > 0) ? Color.white : new Color(1, 1, 1, 0.3f);
+        // 🎯 เปิดตามจำนวน
+        if (current >= 1)
+            icon1.color = activeColor;
+
+        if (current >= 2)
+            icon2.color = activeColor;
     }
 }
