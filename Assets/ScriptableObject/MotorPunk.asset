@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: 
   moveSpeed: 6
-  awarenessRadian: 32
-  splashingRadian: 20
+  awarenessRadian: 6.95
+  splashingRadian: 4.6
