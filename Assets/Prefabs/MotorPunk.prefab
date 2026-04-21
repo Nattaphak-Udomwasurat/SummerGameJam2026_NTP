@@ -25,9 +25,9 @@ Transform:
   m_GameObject: {fileID: 203764851977302996}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.2, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5805529867123371464}
   - {fileID: 7624339613517208039}
@@ -234,7 +234,6 @@ MonoBehaviour:
   patrolRadius: 3
   waterPrefab: {fileID: 3743967797812855958, guid: bd69e19f10cf6a54f823eec2ff24c396, type: 3}
   noticePrefab: {fileID: 2025508441905394627, guid: c7ad0f12667e3c544977ed01156a2917, type: 3}
-  noticeTime: 0.3
   splashForce: 7
   splashPoint: {fileID: 471977153732371410}
   noticePoint: {fileID: 1674953864597737324}
@@ -313,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 6648154335142689515}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 0, z: 0}
+  m_LocalPosition: {x: -3.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -344,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 9056543037488943316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

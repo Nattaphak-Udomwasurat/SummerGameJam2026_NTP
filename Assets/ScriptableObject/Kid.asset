@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Kid
   moveSpeed: 0
-  awarenessRadian: 16
+  awarenessRadian: 12
   splashingRadian: 6

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4601197402016207253}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Notice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9194485166151013652}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WaterPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 7082213925797871318}
   - component: {fileID: 3012353026727085591}
   - component: {fileID: 785789477477668825}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Kid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   attackChance: 0.7
   splashDelayRange: {x: 0.2, y: 1.2}
   noticeTime: 0.7
+  hasAttacked: 0
 --- !u!70 &3012353026727085591
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -277,6 +278,14 @@ PrefabInstance:
     - target: {fileID: 6789163963744588788, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_Name
       value: shadow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789163963744588788, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457265852663674999, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

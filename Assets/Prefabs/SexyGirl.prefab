@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2978531813981041094}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SexyGirl
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -25,14 +25,13 @@ Transform:
   m_GameObject: {fileID: 55238271293828849}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 67.2, y: 1.5884666, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5601384978816237957}
   - {fileID: 6050439536899971169}
   - {fileID: 5515578680155023798}
-  - {fileID: 1108568440286259672}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093596029968331062
@@ -44,7 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677602381450810437}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Notice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +80,7 @@ GameObject:
   - component: {fileID: 9000988427836016446}
   - component: {fileID: 765001487794649270}
   - component: {fileID: 9036169828937956262}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,10 +96,11 @@ Transform:
   m_GameObject: {fileID: 1613150830351974735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1108568440286259672}
   - {fileID: 4455346444375780984}
   - {fileID: 1677602381450810437}
   m_Father: {fileID: 2978531813981041094}
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5601384978816237957}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: A Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 5014864647822065847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -317,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6050439536899971169}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: 'B Point '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ Transform:
   m_GameObject: {fileID: 9121329384165839650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4455346444375780984}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WaterPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2978531813981041094}
+    m_TransformParent: {fileID: 5515578680155023798}
     m_Modifications:
     - target: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_LocalScale.x
@@ -392,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.7762
+      value: 0.22380066
       objectReference: {fileID: 0}
     - target: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_LocalPosition.y
@@ -433,6 +433,14 @@ PrefabInstance:
     - target: {fileID: 6789163963744588788, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_Name
       value: shadow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789163963744588788, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457265852663674999, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

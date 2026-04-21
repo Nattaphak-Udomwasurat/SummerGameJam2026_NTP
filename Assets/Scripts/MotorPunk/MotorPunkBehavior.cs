@@ -14,7 +14,6 @@ public class MotorPunkBehavior : MonoBehaviour
     private GameObject currentNotice;
 
     [Header("Attack")]
-    [SerializeField] private float noticeTime = 0.3f;
     [SerializeField] private float splashForce = 7f;
     [SerializeField] private Transform splashPoint;
     [SerializeField] private Transform noticePoint;
