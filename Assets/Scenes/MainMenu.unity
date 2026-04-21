@@ -2546,7 +2546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5449309665269181617, guid: f6f404bbc5938f2408c5031e608f274d, type: 3}
       propertyPath: totalTime
-      value: 2
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 5449309665269181617, guid: f6f404bbc5938f2408c5031e608f274d, type: 3}
       propertyPath: creditPanel
