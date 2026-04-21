@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MotorPunk
   m_EditorClassIdentifier: 
   enemyName: 
-  moveSpeed: 6
+  moveSpeed: 5.5
   awarenessRadian: 8
   splashingRadian: 3

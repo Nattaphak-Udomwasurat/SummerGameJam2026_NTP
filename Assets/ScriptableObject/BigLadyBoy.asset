@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BigLadyBoy
   m_EditorClassIdentifier: 
   enemyName: 
-  moveSpeed: 10
+  moveSpeed: 8
   awarenessRadian: 0
   splashingRadian: 12.4

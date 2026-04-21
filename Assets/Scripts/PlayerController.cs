@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] public Rigidbody2D rb;
+    [SerializeField] private Freeze playerFreeze;
     private float moveSpeed = 5f;
     private Vector2 moveInput;
     // Start is called before the first frame update
@@ -22,6 +23,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (playerFreeze != null && playerFreeze.IsStunned)
+        {
+            rb.velocity = Vector2.zero; 
+            return;
+        }
+
         rb.velocity = moveInput * moveSpeed;
     }
 

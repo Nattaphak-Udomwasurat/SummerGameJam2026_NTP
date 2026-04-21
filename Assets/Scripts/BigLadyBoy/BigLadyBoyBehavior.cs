@@ -5,6 +5,7 @@ public class BigLadyBoyBehavior : MonoBehaviour
 {
     [SerializeField] public EnemySO enemy;
     [SerializeField] private Transform player;
+    [SerializeField] private Freeze playerFreeze;
 
     [SerializeField] private GameObject noticePrefab;
     [SerializeField] private Transform noticePoint;
@@ -85,13 +86,12 @@ public class BigLadyBoyBehavior : MonoBehaviour
         {
             Debug.Log("Dash Hit Player!");
 
-            var wet = collision.GetComponent<PlayerWet>();
-            if (wet != null)
+            if (playerFreeze != null)
             {
-                wet.TakeWaterHit();
+                playerFreeze.Stun();
             }
 
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 
