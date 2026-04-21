@@ -44,7 +44,7 @@ public class HomeZone : MonoBehaviour
 
         if (isPlayerInside)
         {
-            Debug.Log("🏠 Stay Home Ending");
+            Debug.Log("Stay Home Ending");
             GameManager.Instance.SetEnding(GameManager.EndingType.StayHome);
         }
         else
