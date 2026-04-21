@@ -59,7 +59,7 @@ public class BigLadyBoyBehavior : MonoBehaviour
         isDashing = true;
 
         float timer = 0f;
-        dashDirection = (player.position - transform.position).normalized;
+        dashDirection = (dashTarget - (Vector2)transform.position).normalized;
 
         if (dashDirection.x > 0)
             transform.localScale = new Vector3(1, 1, 1);

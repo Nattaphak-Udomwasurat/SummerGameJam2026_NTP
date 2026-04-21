@@ -139,7 +139,7 @@ public class KidBehavior : MonoBehaviour
         // กัน jitter ตอนอยู่ตรงกลางพอดี
         if (Mathf.Abs(dirX) > 0.05f)
         {
-            spriteRenderer.flipX = dirX < 0;
+            spriteRenderer.flipX = dirX > 0;
         }
     }
 

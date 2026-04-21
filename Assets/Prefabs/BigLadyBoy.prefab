@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9164431406440992856}
   m_Layer: 6
   m_Name: BigLadyBoy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -24.8, y: 3.2012434, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1640712894165486903}
@@ -107,7 +107,7 @@ MonoBehaviour:
   noticePrefab: {fileID: 2025508441905394627, guid: c7ad0f12667e3c544977ed01156a2917, type: 3}
   noticePoint: {fileID: 1764384693438285062}
   dashSpeed: 24
-  noticeTime: 0.3
+  noticeTime: 0.8
   lifeAfterDash: 3
 --- !u!114 &2923775266981111241
 MonoBehaviour:

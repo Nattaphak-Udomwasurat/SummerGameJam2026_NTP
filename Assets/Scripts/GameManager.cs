@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,8 +42,12 @@ public class GameManager : MonoBehaviour
     [Header("Scene Names")]
     [SerializeField] private string mainMenuScene = "MainMenu";
     [SerializeField] private string gameScene = "GameScene";
-    [SerializeField] private string gameOverScene = "GameOver";
-    [SerializeField] private string endCutScene = "EndCutScene";
+
+    [Header("Gallery")]
+    [SerializeField] private GameObject galleryPanel;
+
+    [Header("Credit")]
+    [SerializeField] private GameObject creditPanel;
 
     // ─── Events ───────────────────────────────────────────────
     public delegate void OnTimeChangedDelegate(float timeRemaining, float totalTime);
@@ -59,7 +64,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton — คงอยู่ข้ามฉาก
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -69,8 +73,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // ตั้งค่าเริ่มต้นให้ timeRemaining = totalTime
-        timeRemaining = totalTime;
+        CurrentState = GameState.MainMenu; 
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
@@ -85,8 +90,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(CurrentState != GameState.Playing) return;
+
         if (isClockRunning)
             TickClock();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == mainMenuScene)
+        {
+            galleryPanel = Resources.FindObjectsOfTypeAll<GameObject>()
+                .FirstOrDefault(obj => obj.name == "GalleryPanel");
+
+            creditPanel = Resources.FindObjectsOfTypeAll<GameObject>()
+                .FirstOrDefault(obj => obj.name == "CreditPanel");
+        }
     }
 
     // ══════════════════════════════════════════════════════════
@@ -128,9 +147,13 @@ public class GameManager : MonoBehaviour
     /// <summary>เวลาหมด → ไป Game Over</summary>
     private void TimeUp()
     {
+        if (CurrentState != GameState.Playing) return; 
+
         isClockRunning = false;
+
         Debug.Log("[GameManager] เวลาหมด!");
         OnTimeUp?.Invoke();
+
         TriggerGameOver();
     }
 
@@ -141,7 +164,9 @@ public class GameManager : MonoBehaviour
     /// <summary>กลับไป Main Menu</summary>
     public void GoToMainMenu()
     {
-        isClockRunning = false;
+        isClockRunning = false; 
+        currentEnding = EndingType.None;
+
         ChangeState(GameState.MainMenu);
         SceneManager.LoadScene(mainMenuScene);
     }
@@ -149,7 +174,7 @@ public class GameManager : MonoBehaviour
     /// <summary>ปุ่ม Start — เริ่มเกม</summary>
     public void StartGame()
     {
-        currentEnding = EndingType.None; // 🔥 สำคัญ
+        currentEnding = EndingType.None; // 
         ChangeState(GameState.Playing);
         SceneManager.LoadScene(gameScene);
         StartClock();
@@ -176,26 +201,68 @@ public class GameManager : MonoBehaviour
     /// <summary>เรียกเมื่อเกมจบ (เวลาหมด หรือแพ้)</summary>
     public void TriggerGameOver()
     {
+        if (CurrentState != GameState.Playing) return; 
+
         if (CurrentState == GameState.GameOver) return;
 
         ChangeState(GameState.GameOver);
         isClockRunning = false;
 
-        Debug.Log($"[GameManager] Game Over → Ending: {currentEnding}");
+        UnlockEnding(currentEnding);
 
-        // 🔥 ใช้ UI แทน Scene
         EndingController ending = FindObjectOfType<EndingController>();
-
         if (ending != null)
-        {
             ending.ShowEnding(currentEnding);
-        }
-        else
-        {
-            Debug.LogError("❌ No EndingController in scene!");
-        }
     }
 
+    // ══════════════════════════════════════════════════════════
+    //  ④ GALLERY — บันทึก Ending ที่ได้รับ
+    // ══════════════════════════════════════════════════════════
+
+    public void UnlockEnding(EndingType ending)
+    {
+        if (ending == EndingType.None) return;
+        PlayerPrefs.SetInt("Ending_" + ending.ToString(), 1);
+        PlayerPrefs.Save();
+        Debug.Log($"[GameManager] Unlocked Ending: {ending}");
+    }
+
+    public bool IsEndingUnlocked(EndingType ending)
+    {
+        return PlayerPrefs.GetInt("Ending_" + ending.ToString(), 0) == 1;
+    }
+
+    // (optional) ใช้ตอน dev เพื่อ reset
+    public void ClearAllEndings()
+    {
+        foreach (EndingType e in System.Enum.GetValues(typeof(EndingType)))
+            PlayerPrefs.DeleteKey("Ending_" + e.ToString());
+        PlayerPrefs.Save();
+    }
+    public void OpenGallery()
+    {
+        if (galleryPanel == null) return;
+        galleryPanel.SetActive(true);
+    }
+
+    public void CloseGallery()
+    {
+        if (galleryPanel == null) return;
+        galleryPanel.SetActive(false);
+    }
+
+
+    public void OpenCreditWindow()
+    {
+        if (creditPanel == null) return;
+        creditPanel.SetActive(true);
+    }
+
+    public void CloseCreditWindow()
+    {
+        if (creditPanel == null) return;
+        creditPanel.SetActive(false);
+    }
     /// <summary>เล่น End Scene แล้วไป Over Menu</summary>
 
 

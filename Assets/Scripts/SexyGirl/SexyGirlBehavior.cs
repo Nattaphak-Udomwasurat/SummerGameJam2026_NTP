@@ -45,17 +45,21 @@ public class SexyGirlBehavior : MonoBehaviour
     }
     void Update()
     {
-        if (enemy == null || player == null || hasAttacked) return;
+        if (enemy == null || player == null) return;
 
         float dist = Vector2.Distance(transform.position, player.position);
 
-        // 👀 Phase 1: Awareness → สุ่มว่าจะโจมตีไหม
+        //  Phase 1: Awareness → สุ่มว่าจะโจมตีไหม
         if (dist <= enemy.awarenessRadian && !decidedToAttack)
         {
             DecideAttack();
         }
 
-        if (dist <= enemy.splashingRadian && willAttack)
+        if (hasAttacked)
+        {
+            currentState = State.Patrol;
+        }
+        else if (dist <= enemy.splashingRadian && willAttack)
         {
             currentState = State.Attack;
         }
