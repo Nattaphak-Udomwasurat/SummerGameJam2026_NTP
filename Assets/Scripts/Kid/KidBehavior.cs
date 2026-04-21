@@ -16,7 +16,7 @@ public class KidBehavior : MonoBehaviour
 
     [SerializeField] private float noticeTime = 0.2f;
 
-    private bool hasAttacked = false;
+    public bool hasAttacked = false;
     private bool isChecking = false;
     private bool decidedToAttack = false; 
     private bool willAttack = false;      
