@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: baea32190c5540e47839e96db360c000, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4047fe4f778e1ce40a1942732bdeb1ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 2.44, y: 3.37}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: ac550511a8306d74cb642ee9853d5762, type: 2}
   player: {fileID: 0}
+  playerFreeze: {fileID: 0}
   noticePrefab: {fileID: 2025508441905394627, guid: c7ad0f12667e3c544977ed01156a2917, type: 3}
   noticePoint: {fileID: 1764384693438285062}
   dashSpeed: 24
@@ -121,8 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationSprite:
-  - {fileID: 21300000, guid: baea32190c5540e47839e96db360c000, type: 3}
-  - {fileID: 21300000, guid: b89d7b58e8507a640867916087b47266, type: 3}
+  - {fileID: 21300000, guid: 4047fe4f778e1ce40a1942732bdeb1ac, type: 3}
+  - {fileID: 21300000, guid: 54bbb3c6bf251b64eaabdc6cb56851f9, type: 3}
   delayBefore: 0.3
   delayAfter: 0.3
   LadySprite: {fileID: 0}

@@ -25,11 +25,6 @@ public class Sexy_animation : MonoBehaviour
 
         if (isMoving)
         {
-            if (transform.position.x < lastPosition.x)
-                LadySprite.flipX = false;
-            else if (transform.position.x > lastPosition.x)
-                LadySprite.flipX = true;
-
             if (!isAnimating)
                 StartCoroutine(WalkAnimation());
         }
