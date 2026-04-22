@@ -19,8 +19,9 @@ public class KidBehavior : MonoBehaviour
     public bool hasAttacked = false;
     private bool isChecking = false;
     private bool decidedToAttack = false; 
-    private bool willAttack = false;      
+    private bool willAttack = false;
     private bool isWaitingToSplash = false;
+    public bool didSplash = false;
 
     private PangHaamYard playerBlock;
 
@@ -84,11 +85,13 @@ public class KidBehavior : MonoBehaviour
         if (blocked)
         {
             Debug.Log("Perfect Block!");
+            didSplash = false; //  ไม่ยิง
             hasAttacked = true;
             yield break;
         }
 
         SplashWater();
+        didSplash = true; //  ยิงจริง
         hasAttacked = true;
     }
 

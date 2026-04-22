@@ -20,8 +20,7 @@ public class Kidanimation : MonoBehaviour
 
     void Update()
     {
-        // isAnimating flag prevents coroutine from spamming every frame
-        if (kidBehavior.hasAttacked && !isAnimating)
+        if (kidBehavior.hasAttacked && kidBehavior.didSplash && !isAnimating)
         {
             StartCoroutine(SplashAnimation());
         }
@@ -37,8 +36,9 @@ public class Kidanimation : MonoBehaviour
         yield return new WaitForSeconds(delayAfter);
         KidSprite.sprite = AnimationSprite[0];
 
-        // Reset so animation can trigger again next attack
         kidBehavior.hasAttacked = false;
+        kidBehavior.didSplash = false; 
+
         isAnimating = false;
     }
 }
