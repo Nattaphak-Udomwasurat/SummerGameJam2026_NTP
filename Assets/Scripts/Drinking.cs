@@ -26,7 +26,7 @@ public class Drinking : MonoBehaviour
 
         if (IsDrinking) return;
 
-        // กันแทรกตรงนี้
+        // 🔥 สำคัญ: ล็อค state จาก Player
         if (player != null && player.IsBusy()) return;
 
         if (inventory == null || !inventory.UseDrink())
