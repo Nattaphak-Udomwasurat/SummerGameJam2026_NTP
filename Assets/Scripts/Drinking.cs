@@ -11,6 +11,8 @@ public class Drinking : MonoBehaviour
     public event Action OnDrinkStart;
     public event Action OnDrinkEnd;
 
+    [SerializeField] private Player player;
+
     [SerializeField] private EnergyDrinkInventory inventory;
     [SerializeField] private PangHaamYard blockSystem;
     [SerializeField] private int restoreAmount = 2;
@@ -20,10 +22,12 @@ public class Drinking : MonoBehaviour
 
     public void OnDrink(InputAction.CallbackContext context)
     {
-        // ✅ สำหรับ Unity Event ใช้ performed
         if (!context.performed) return;
 
         if (IsDrinking) return;
+
+        // กันแทรกตรงนี้
+        if (player != null && player.IsBusy()) return;
 
         if (inventory == null || !inventory.UseDrink())
             return;

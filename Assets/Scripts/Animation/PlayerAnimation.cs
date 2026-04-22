@@ -10,6 +10,9 @@ public class PlayerAnimation : MonoBehaviour
     public float delayAfter = 0.3f;      // wait after changing back to idle
     private Vector3 lastPosition;
     private bool isAnimating = false;
+    private Coroutine walkRoutine;
+
+    [SerializeField] private Player player;
 
     void Start()
     {
@@ -18,17 +21,30 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        bool isMoving = transform.position != lastPosition;
+        if (player != null && player.IsBusy())
+        {
+            if (walkRoutine != null)
+            {
+                StopCoroutine(walkRoutine);
+                walkRoutine = null;
+            }
+
+            isAnimating = false;
+            return;
+        }
+
+        Vector3 delta = transform.position - lastPosition;
+        bool isMoving = delta.sqrMagnitude > 0.0001f;
 
         if (isMoving)
         {
-            if (transform.position.x < lastPosition.x)
+            if (delta.x < 0)
                 PlayerSprite.flipX = false;
-            else if (transform.position.x > lastPosition.x)
+            else if (delta.x > 0)
                 PlayerSprite.flipX = true;
 
             if (!isAnimating)
-                StartCoroutine(WalkAnimation());
+                walkRoutine = StartCoroutine(WalkAnimation());
         }
 
         lastPosition = transform.position;

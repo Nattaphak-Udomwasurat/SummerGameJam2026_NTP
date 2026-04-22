@@ -11,6 +11,8 @@ public class Throwing : MonoBehaviour
     public event Action OnThrowStart;
     public event Action OnThrowEnd;
 
+    [SerializeField] private Player player;
+
     [SerializeField] private EnergyDrinkInventory inventory;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform throwPoint;
@@ -57,16 +59,11 @@ public class Throwing : MonoBehaviour
 
         if (IsThrowing) return;
 
-        // 🔍 หา enemy ก่อน
+        if (player != null && player.IsBusy()) return;
+
         Transform target = FindClosestEnemy();
+        if (target == null) return;
 
-        if (target == null)
-        {
-            Debug.Log("No enemy in range");
-            return; // ❌ ไม่ทำอะไรเลย
-        }
-
-        // ✅ มี target ค่อยใช้ของ
         if (inventory == null || !inventory.UseDrink())
             return;
 

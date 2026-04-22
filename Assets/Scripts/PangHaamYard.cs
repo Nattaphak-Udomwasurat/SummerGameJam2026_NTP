@@ -14,8 +14,10 @@ public class PangHaamYard : MonoBehaviour
     public event Action OnBlockEnd;
     public event Action<int, int> OnChargeChanged;
 
+    [SerializeField] private Player player;
+
     [Header("Block Settings")]
-    public float blockDuration = 0.5f;
+    public float blockDuration = 1f;
 
     [Header("Charge Settings")]
     public int maxCharges = 4;
@@ -36,6 +38,8 @@ public class PangHaamYard : MonoBehaviour
 
         if (currentCharges <= 0) return;
 
+        if (player != null && player.IsBusy()) return;
+
         UseCharge();
 
         if (blockRoutine != null)
@@ -48,7 +52,7 @@ public class PangHaamYard : MonoBehaviour
     {
         IsBlocking = true;
 
-        lastBlockTime = Time.time; // 🔥 บันทึกเวลาที่เริ่ม block
+        lastBlockTime = Time.time; // บันทึกเวลาที่เริ่ม block
 
         OnBlockStart?.Invoke();
 
