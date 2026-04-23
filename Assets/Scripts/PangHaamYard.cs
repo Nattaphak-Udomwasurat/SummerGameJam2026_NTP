@@ -16,6 +16,8 @@ public class PangHaamYard : MonoBehaviour
 
     [SerializeField] private Player player;
 
+    [SerializeField] private AudioClip phmSFX;
+
     [Header("Block Settings")]
     public float blockDuration = 1f;
 
@@ -55,6 +57,9 @@ public class PangHaamYard : MonoBehaviour
         lastBlockTime = Time.time; // บันทึกเวลาที่เริ่ม block
 
         OnBlockStart?.Invoke();
+
+        if (AudioManager.Instance != null && phmSFX != null)
+            AudioManager.Instance.PlaySFX(phmSFX);
 
         yield return new WaitForSeconds(blockDuration);
 

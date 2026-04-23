@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnergyDrink : MonoBehaviour
 {
     [SerializeField] private float laneTolerance = 2f; // ปรับได้
+    [SerializeField] private AudioClip pickSFX;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +22,9 @@ public class EnergyDrink : MonoBehaviour
 
             if (success)
             {
+                if (AudioManager.Instance != null && pickSFX != null)
+                    AudioManager.Instance.PlaySFX(pickSFX);
+
                 Destroy(gameObject);
             }
         }

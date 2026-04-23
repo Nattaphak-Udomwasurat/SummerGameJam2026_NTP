@@ -13,6 +13,11 @@ public class MotorPunkBehavior : MonoBehaviour
     [SerializeField] GameObject noticePrefab;
     private GameObject currentNotice;
 
+    [SerializeField] private float soundRange = 300f;
+    [SerializeField] private AudioClip patrolSFX;
+    [SerializeField] private AudioClip chaseSFX;
+    [SerializeField] private AudioSource patrolAudioSource;
+
     [Header("Attack")]
     [SerializeField] private float splashForce = 7f;
     [SerializeField] private Transform splashPoint;
@@ -27,6 +32,8 @@ public class MotorPunkBehavior : MonoBehaviour
 
     private PangHaamYard playerBlock;
 
+    private bool isPlayingChaseSFX = false;
+    private bool isPlayingPatrolSFX = false;
     private bool hasAttacked = false;
     private bool isAttacking = false;
 
@@ -40,6 +47,13 @@ public class MotorPunkBehavior : MonoBehaviour
 
         if (player != null)
             playerBlock = player.GetComponent<PangHaamYard>();
+
+        if (patrolAudioSource != null && patrolSFX != null)
+        {
+            patrolAudioSource.clip = patrolSFX;
+            patrolAudioSource.loop = true;
+            patrolAudioSource.volume = 0f;
+        }
     }
 
     // Update is called once per frame
@@ -79,17 +93,41 @@ public class MotorPunkBehavior : MonoBehaviour
 
     void Patrol()
     {
+        if (!patrolAudioSource.isPlaying)
+            patrolAudioSource.Play();
+
+        float dist = Vector2.Distance(transform.position, player.position);
+        float volumeRatio = 1f - Mathf.Clamp01(dist / soundRange);
+        patrolAudioSource.volume = volumeRatio * AudioManager.Instance.GetSFXVolume();
+
         MoveTo(currentTarget.position);
 
         if (Vector2.Distance(transform.position, currentTarget.position) < 0.2f)
         {
-
             currentTarget = currentTarget == pointA ? pointB : pointA;
         }
     }
 
     void Chase()
     {
+        if (patrolAudioSource.isPlaying)
+            patrolAudioSource.Stop();
+
+        float dist = Vector2.Distance(transform.position, player.position);
+
+        if (dist <= soundRange)
+        {
+            if (!isPlayingChaseSFX)
+            {
+                AudioManager.Instance.PlaySFX(chaseSFX);
+                isPlayingChaseSFX = true;
+            }
+        }
+        else
+        {
+            isPlayingChaseSFX = false;
+        }
+
         MoveTo(player.position);
     }
 

@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 1cb59af32fe643247a97df36f92eb137, type: 2}
   player: {fileID: 0}
+  catSFX: {fileID: 8300000, guid: 3253a34006d1c7c45adfe03af352fdb4, type: 3}
   noticePrefab: {fileID: 2025508441905394627, guid: c7ad0f12667e3c544977ed01156a2917, type: 3}
   noticePoint: {fileID: 4298108203694880046}
 --- !u!114 &1083679109591995322

@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 5827255842400401593}
   - component: {fileID: 2758801509721497662}
   - component: {fileID: 2065667219772233720}
+  - component: {fileID: 7621212727750820890}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -257,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9d594f41b852d4542917ac9cd6c47beb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e8137704ffe2bd48aeefd420f483015, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -330,6 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 763661793836787309}
+  playerFreeze: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &343982005908385020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f33cda6803c9c48a11a823b44d4fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  phmSFX: {fileID: 8300000, guid: 33d0b91a3f27aab4695b8bd744cfaaaa, type: 3}
   blockDuration: 0.5
   maxCharges: 4
   currentCharges: 4
@@ -518,9 +523,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbaca619781b054da5c4b7055466f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   inventory: {fileID: 4928285159032798558}
   blockSystem: {fileID: 343982005908385020}
   restoreAmount: 2
+  drinkSFX: {fileID: 8300000, guid: 4ccae2d7a54d07f4582e82e1a2fe0731, type: 3}
   drinkDuration: 0.3
 --- !u!114 &8368031731047688977
 MonoBehaviour:
@@ -534,6 +541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba0bdcfc986a7b41ae14c892c20b5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  throwSFX: {fileID: 8300000, guid: d7624ac723438684b86e2298ef5cee09, type: 3}
   inventory: {fileID: 4928285159032798558}
   projectilePrefab: {fileID: 8100945217323484343, guid: 114516e8b97729e489c138d1b67f8056, type: 3}
   throwPoint: {fileID: 4536370214053407760}
@@ -571,11 +580,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationSprite:
-  - {fileID: 21300000, guid: 985ae5bd12a1e18468ec1481a090a644, type: 3}
-  - {fileID: 21300000, guid: 9d594f41b852d4542917ac9cd6c47beb, type: 3}
+  - {fileID: 21300000, guid: ee3030dd2445c564c8890d8a20fd85b2, type: 3}
+  - {fileID: 21300000, guid: f649e4dad7e84764e8369b388b384389, type: 3}
   PlayerSprite: {fileID: 94524733088114275}
-  delayBefore: 0.2
+  delayBefore: 0
   delayAfter: 0.2
+  idleSprites:
+  - {fileID: 21300000, guid: 8e8137704ffe2bd48aeefd420f483015, type: 3}
+  - {fileID: 21300000, guid: 6d0e27bd0c2684749a9d7ee101b09523, type: 3}
+  idleDelay: 0.5
+  moveSFX: {fileID: 8300000, guid: 7667e3fdcb3b528419da036552c73356, type: 3}
+  player: {fileID: 0}
 --- !u!95 &2758801509721497662
 Animator:
   serializedVersion: 5
@@ -632,6 +647,26 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.86, y: 2.83}
   m_Direction: 0
+--- !u!114 &7621212727750820890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199543590401353611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a3b3bbe4c51e24eb72ece965a4d249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimationSprite:
+  - {fileID: 21300000, guid: 84d70755f1dc54844ada22658d65cf7b, type: 3}
+  - {fileID: 21300000, guid: 88fcd4b6f4a35d448b0598d87aba5ebb, type: 3}
+  - {fileID: 21300000, guid: 985ae5bd12a1e18468ec1481a090a644, type: 3}
+  delayBefore: 0.2
+  delayAfter: 0.2
+  freeze: {fileID: 0}
+  freezeSprite: {fileID: 0}
 --- !u!1001 &3209535989708102860
 PrefabInstance:
   m_ObjectHideFlags: 0

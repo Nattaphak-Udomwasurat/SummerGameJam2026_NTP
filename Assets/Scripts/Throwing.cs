@@ -13,6 +13,8 @@ public class Throwing : MonoBehaviour
 
     [SerializeField] private Player player;
 
+    [SerializeField] private AudioClip throwSFX;
+
     [SerializeField] private EnergyDrinkInventory inventory;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform throwPoint;
@@ -74,6 +76,9 @@ public class Throwing : MonoBehaviour
     {
         IsThrowing = true;
         OnThrowStart?.Invoke();
+
+        if (AudioManager.Instance != null && throwSFX != null)
+            AudioManager.Instance.PlaySFX(throwSFX);
 
         yield return new WaitForSeconds(0.1f);
 

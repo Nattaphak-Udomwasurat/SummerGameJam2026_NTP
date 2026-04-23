@@ -6,6 +6,8 @@ public class Cat : MonoBehaviour
     [SerializeField] private Transform player;
     private PangHaamYard pangHaamYard;
 
+    [SerializeField] private AudioClip catSFX;
+
     [SerializeField] private GameObject noticePrefab;
     [SerializeField] private Transform noticePoint;
 
@@ -44,6 +46,7 @@ public class Cat : MonoBehaviour
         // 🎯 อยู่ในระยะ → ต้องมี notice
         if (dist <= enemy.splashingRadian)
         {
+
             if (currentNotice == null)
             {
                 currentNotice = Instantiate(noticePrefab, noticePoint.position, Quaternion.identity, transform);
@@ -63,6 +66,9 @@ public class Cat : MonoBehaviour
     {
         if (currentNotice == null)
         {
+            if (AudioManager.Instance != null && catSFX != null)
+                AudioManager.Instance.PlaySFX(catSFX);
+
             currentNotice = Instantiate(noticePrefab, noticePoint.position, Quaternion.identity, transform);
         }
     }

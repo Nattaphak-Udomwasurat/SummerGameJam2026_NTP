@@ -14,7 +14,9 @@ public class KidBehavior : MonoBehaviour
     [SerializeField] private float attackChance = 0.7f; 
     [SerializeField] private Vector2 splashDelayRange = new Vector2(0.2f, 1.2f);
 
-    [SerializeField] private float noticeTime = 0.2f;
+    [SerializeField] private float noticeTime = 0.4f;
+
+    [SerializeField] private AudioClip splashSFX;
 
     public bool hasAttacked = false;
     private bool isChecking = false;
@@ -98,6 +100,9 @@ public class KidBehavior : MonoBehaviour
     private void SplashWater()
     {
         Vector2 dir = (player.position - splashPoint.position).normalized;
+
+        if (AudioManager.Instance != null && splashSFX != null)
+            AudioManager.Instance.PlaySFX(splashSFX);
 
         GameObject water = Instantiate(waterPrefab, splashPoint.position, Quaternion.identity);
 

@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laneTolerance: 2
+  pickSFX: {fileID: 8300000, guid: a6913e30d98e68b44ae29dfa31c7e9c8, type: 3}
 --- !u!70 &1978103110777167704
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

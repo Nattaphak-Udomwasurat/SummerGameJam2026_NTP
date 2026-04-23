@@ -7,6 +7,8 @@ public class BigLadyBoyBehavior : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Freeze playerFreeze;
 
+    [SerializeField] private AudioClip ladyboySFX;
+
     [SerializeField] private GameObject noticePrefab;
     [SerializeField] private Transform noticePoint;
 
@@ -29,7 +31,7 @@ public class BigLadyBoyBehavior : MonoBehaviour
 
         float dist = Vector2.Distance(transform.position, player.position);
 
-        // 🎯 เข้า range → เริ่ม attack
+        // เข้า range → เริ่ม attack
         if (dist <= enemy.splashingRadian)
         {
             StartCoroutine(PrepareAndDash());
@@ -60,6 +62,9 @@ public class BigLadyBoyBehavior : MonoBehaviour
 
         float timer = 0f;
         dashDirection = (dashTarget - (Vector2)transform.position).normalized;
+
+        if (AudioManager.Instance != null && ladyboySFX != null)
+            AudioManager.Instance.PlaySFX(ladyboySFX);
 
         if (dashDirection.x > 0)
             transform.localScale = new Vector3(1, 1, 1);

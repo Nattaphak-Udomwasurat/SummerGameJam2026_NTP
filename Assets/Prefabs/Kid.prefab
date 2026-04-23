@@ -142,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80c2841be50b980448a801cdf9520567, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65f6946c8abc7dc488676c0ba5c94ef8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,7 +176,9 @@ MonoBehaviour:
   attackChance: 0.7
   splashDelayRange: {x: 0.2, y: 1.2}
   noticeTime: 0.7
+  splashSFX: {fileID: 8300000, guid: 1c21bd755b1a31a408c2feb4ce70dce7, type: 3}
   hasAttacked: 0
+  didSplash: 0
 --- !u!70 &3012353026727085591
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -241,11 +243,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationSprite:
-  - {fileID: 21300000, guid: 80c2841be50b980448a801cdf9520567, type: 3}
-  - {fileID: 21300000, guid: 53c43905970b2be4982922cdeb27d9a2, type: 3}
+  - {fileID: 21300000, guid: fddbb4fcee3c99344ace76e50a2cf0fb, type: 3}
+  - {fileID: 21300000, guid: fb66f677573f2754392e491ca12ff23e, type: 3}
   KidSprite: {fileID: 0}
-  delayBefore: 0.3
-  delayAfter: 0.3
+  delayBefore: 0.2
+  delayAfter: 0.2
 --- !u!1001 &8508977298624093869
 PrefabInstance:
   m_ObjectHideFlags: 0

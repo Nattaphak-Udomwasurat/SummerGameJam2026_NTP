@@ -17,6 +17,7 @@ public class Drinking : MonoBehaviour
     [SerializeField] private PangHaamYard blockSystem;
     [SerializeField] private int restoreAmount = 2;
 
+    [SerializeField] private AudioClip drinkSFX;
 
     [SerializeField] private float drinkDuration = 0.3f;
 
@@ -39,6 +40,9 @@ public class Drinking : MonoBehaviour
     {
         IsDrinking = true;
         OnDrinkStart?.Invoke();
+
+        if (AudioManager.Instance != null && drinkSFX != null)
+            AudioManager.Instance.PlaySFX(drinkSFX);
 
         blockSystem.RestoreCharge(restoreAmount);
 
