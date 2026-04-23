@@ -42,17 +42,22 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        // ถ้า player กำลังทำ action → override ทุกอย่าง
+        // 🔥 ถ้าโดน stun → หยุด animation ทั้งหมด
+        if (freeze != null && freeze.IsStunned)
+        {
+            ChangeState(AnimState.Busy); // หรือสร้าง Freeze state ก็ได้
+            return;
+        }
+
+        // ถ้า player กำลังทำ action
         if (player != null && player.IsBusy())
         {
             ChangeState(AnimState.Busy);
             return;
         }
 
-        Vector3 delta = transform.position - lastPosition;
         bool isMoving = controller.MoveInput.sqrMagnitude > 0.01f;
 
-        // flip
         float x = controller.MoveInput.x;
 
         if (x < 0) playerSprite.flipX = false;
@@ -62,8 +67,6 @@ public class PlayerAnimation : MonoBehaviour
             ChangeState(AnimState.Walk);
         else
             ChangeState(AnimState.Idle);
-
-        lastPosition = transform.position;
     }
 
     void ChangeState(AnimState newState)

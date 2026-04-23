@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 725627997050943493}
   m_Layer: 0
   m_Name: Dinsorpong
-  m_TagString: Water
+  m_TagString: Dinsorpong
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

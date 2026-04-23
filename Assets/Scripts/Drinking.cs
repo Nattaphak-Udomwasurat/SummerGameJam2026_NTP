@@ -34,11 +34,6 @@ public class Drinking : MonoBehaviour
         // 🔥 สำคัญ: ล็อค state จาก Player
         if (player != null && player.IsBusy()) return;
 
-        if (currentRefresh == null)
-        {
-            currentRefresh = Instantiate(refreshPrefab, refreshPoint.position, Quaternion.identity, transform);
-        }
-
         if (inventory == null || !inventory.UseDrink())
             return;
 
@@ -55,13 +50,15 @@ public class Drinking : MonoBehaviour
 
         blockSystem.RestoreCharge(restoreAmount);
 
-        GameObject currentRefresh = null;
-        SpriteRenderer sr = null;
-
+        // 🔥 สร้าง prefab แค่ครั้งเดียว
         if (refreshPrefab != null)
         {
             currentRefresh = Instantiate(refreshPrefab, refreshPoint.position, Quaternion.identity, transform);
         }
+
+        SpriteRenderer sr = null;
+        if (currentRefresh != null)
+            sr = currentRefresh.GetComponent<SpriteRenderer>();
 
         float t = 0f;
 
@@ -69,7 +66,6 @@ public class Drinking : MonoBehaviour
         {
             t += Time.deltaTime;
 
-            // fade alpha 1 → 0
             if (sr != null)
             {
                 float alpha = 1f - (t / drinkDuration);
@@ -90,7 +86,10 @@ public class Drinking : MonoBehaviour
         }
 
         if (currentRefresh != null)
+        {
             Destroy(currentRefresh);
+            currentRefresh = null;
+        }
 
         IsDrinking = false;
         OnDrinkEnd?.Invoke();

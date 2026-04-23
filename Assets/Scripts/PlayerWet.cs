@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerWet : MonoBehaviour
 {
     [SerializeField] GameObject getWet;
+    [SerializeField] GameObject getDinsorpong;
     public int maxWet = 5;
     public int currentWet { get; private set; }
 
@@ -15,6 +16,7 @@ public class PlayerWet : MonoBehaviour
     public void Start()
     {
         getWet.SetActive(false);
+        getDinsorpong.SetActive(false);
     }
 
     public void TakeWaterHit()
@@ -34,9 +36,17 @@ public class PlayerWet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Water")
+        if (collision.gameObject.tag == "Water" || collision.gameObject.tag == "Dinsorpong")
         {
-            StartCoroutine(GetWet());
+            if (collision.gameObject.tag == "Water")
+            {
+                StartCoroutine(GetWet());
+            }
+            else if (collision.gameObject.tag == "Dinsorpong")
+            {
+                StartCoroutine(GetDinsorpong());
+            }
+
             TakeWaterHit();
             Destroy(collision.gameObject);
         }
@@ -57,5 +67,12 @@ public class PlayerWet : MonoBehaviour
         getWet.SetActive(true);
         yield return new WaitForSeconds(1f);
         getWet.SetActive(false);
+    }
+
+    IEnumerator GetDinsorpong()
+    {
+        getDinsorpong.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        getDinsorpong.SetActive(false);
     }
 }
