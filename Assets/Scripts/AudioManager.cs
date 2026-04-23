@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 🎵 เล่น BGM
+    //  เล่น BGM
     public void PlayBGM(AudioClip clip)
     {
         if (bgmSource.clip == clip) return;
@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
         bgmSource.Play();
     }
 
-    // 🔊 เล่น SFX
+    //  เล่น SFX
     public void PlaySFX(AudioClip clip)
     {
         if (sfxSources.Count == 0) return;
@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
             currentIndex = 0;
     }
 
-    // 🎚 ปรับเสียง
+    // ปรับเสียง
     public void SetBGMVolume(float value)
     {
         bgmVolume = value;
