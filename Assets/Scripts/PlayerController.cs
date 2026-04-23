@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Freeze playerFreeze;
     [SerializeField] private Player player;
 
+    public Vector2 MoveInput => moveInput;
+
     private float moveSpeed = 5f;
     private Vector2 moveInput;
     // Start is called before the first frame update

@@ -4,134 +4,124 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    public List<Sprite> AnimationSprite;  // [0] = idle, [1] = walk
-    public SpriteRenderer PlayerSprite;
-    public float delayBefore = 0.5f;     // wait before changing to walk
-    public float delayAfter = 0.5f;
-    public float timeDelay = 1f;// wait after changing back to idle
-    private Vector3 lastPosition;
-    private bool isAnimating = false;
-    private bool isIdle = false;
-    [SerializeField]  private Freeze freeze;
-    private Coroutine walkRoutine;
+    private enum AnimState
+    {
+        Idle,
+        Walk,
+        Busy
+    }
 
+    [Header("Refs")]
+    [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private Player player;
+    [SerializeField] private Freeze freeze;
+    [SerializeField] private PlayerController controller;
+
+    [Header("Walk")]
+    [SerializeField] private List<Sprite> walkSprites; // 2 frame
+    [SerializeField] private float walkDelay = 0.3f;
+
+    [Header("Idle")]
     [SerializeField] private List<Sprite> idleSprites;
     [SerializeField] private float idleDelay = 0.5f;
 
-    private Coroutine idleRoutine;
-
+    [Header("SFX")]
     [SerializeField] private AudioClip moveSFX;
-    [SerializeField] private Player player;
+
+    private AnimState currentState;
+
+    private Coroutine currentRoutine;
+
+    private Vector3 lastPosition;
 
     void Start()
     {
         lastPosition = transform.position;
+        ChangeState(AnimState.Idle);
     }
 
     void Update()
     {
+        // ถ้า player กำลังทำ action → override ทุกอย่าง
         if (player != null && player.IsBusy())
         {
-            StopAllAnimations();
+            ChangeState(AnimState.Busy);
             return;
         }
 
         Vector3 delta = transform.position - lastPosition;
-        bool isMoving = delta.sqrMagnitude > 0.0001f;
+        bool isMoving = controller.MoveInput.sqrMagnitude > 0.01f;
 
-        //  Flip ตอนเดิน
+        // flip
+        float x = controller.MoveInput.x;
+
+        if (x < 0) playerSprite.flipX = false;
+        else if (x > 0) playerSprite.flipX = true;
+
         if (isMoving)
-        {
-            if (delta.x < 0)
-                PlayerSprite.flipX = false;
-            else if (delta.x > 0)
-                PlayerSprite.flipX = true;
-
-
-            if (!isAnimating)
-            {
-                walkRoutine = StartCoroutine(WalkAnimation());
-            }
-                
-
-        }
-        else if ( isMoving == false)
-        {
-            
-        }
-        {
-           /* if (isAnimating)
-            {
-                StopCoroutine(walkRoutine);
-            }*/
-            
-            if (!freeze.IsStunned && !isIdle) // ไม่โดน Stun และยังไม่ได้ Idle
-            {
-                if (walkRoutine != null)
-                {
-                    walkRoutine = null;
-                    isAnimating = false;
-                }
-                idleRoutine = StartCoroutine(IdleAnimation());
-            }
-
-            //  ถ้าโดน Stun → หยุด Idle ด้วย
-            if (freeze.IsStunned && isIdle)
-            {
-                if (idleRoutine != null)
-                {
-                    StopCoroutine(idleRoutine);
-                    idleRoutine = null;
-                    isIdle = false;
-                }
-            }
-
-        }
+            ChangeState(AnimState.Walk);
+        else
+            ChangeState(AnimState.Idle);
 
         lastPosition = transform.position;
-        Debug.Log(isMoving);
     }
 
-    IEnumerator WalkAnimation()
+    void ChangeState(AnimState newState)
     {
-        isAnimating = true;
+        if (currentState == newState) return;
+
+        currentState = newState;
+
+        // stop ของเก่า
+        if (currentRoutine != null)
+        {
+            StopCoroutine(currentRoutine);
+            currentRoutine = null;
+        }
+
+        // start ใหม่
+        switch (currentState)
+        {
+            case AnimState.Idle:
+                currentRoutine = StartCoroutine(IdleRoutine());
+                break;
+
+            case AnimState.Walk:
+                currentRoutine = StartCoroutine(WalkRoutine());
+                break;
+
+            case AnimState.Busy:
+                // ไม่ทำ animation (ให้ Player.cs คุม sprite)
+                break;
+        }
+    }
+
+    IEnumerator WalkRoutine()
+    {
+        int index = 0;
 
         while (true)
         {
             if (AudioManager.Instance != null && moveSFX != null)
                 AudioManager.Instance.PlaySFX(moveSFX);
 
-            PlayerSprite.sprite = AnimationSprite[0];
-            yield return new WaitForSeconds(delayBefore);
+            playerSprite.sprite = walkSprites[index];
+            index = (index + 1) % walkSprites.Count;
 
-            PlayerSprite.sprite = AnimationSprite[1];
-            yield return new WaitForSeconds(delayAfter);
+            yield return new WaitForSeconds(walkDelay);
         }
     }
 
-    IEnumerator IdleAnimation()
+    IEnumerator IdleRoutine()
     {
-        isIdle = true;
         int index = 0;
 
         while (true)
         {
-            PlayerSprite.sprite = idleSprites[index];
+            playerSprite.sprite = idleSprites[index];
             index = (index + 1) % idleSprites.Count;
 
             yield return new WaitForSeconds(idleDelay);
         }
-    }
-
-    IEnumerator CheckAnimation()
-    {
-        yield return new WaitForSeconds(timeDelay);
-        isIdle = true;
-    }
-
-    void StopAllAnimations()
-    {
-        if (walkRoutine != null) { StopCoroutine(walkRoutine); walkRoutine = null; isAnimating = false; }
-        if (idleRoutine != null) { StopCoroutine(idleRoutine); idleRoutine = null; isIdle = false; }
     }
 }

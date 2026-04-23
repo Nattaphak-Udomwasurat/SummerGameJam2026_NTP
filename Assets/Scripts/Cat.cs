@@ -5,15 +5,18 @@ public class Cat : MonoBehaviour
     [SerializeField] public EnemySO enemy;
     [SerializeField] private Transform player;
     private PangHaamYard pangHaamYard;
-
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AudioClip catSFX;
-
+    public Sprite normalSprite;
+    public Sprite meowSprite;
     [SerializeField] private GameObject noticePrefab;
     [SerializeField] private Transform noticePoint;
 
     private GameObject currentNotice;
     void Start()
     {
+        spriteRenderer.sprite = normalSprite;
+
         if (player != null)
             pangHaamYard = player.GetComponent<PangHaamYard>();
     }
@@ -69,6 +72,7 @@ public class Cat : MonoBehaviour
             if (AudioManager.Instance != null && catSFX != null)
                 AudioManager.Instance.PlaySFX(catSFX);
 
+            spriteRenderer.sprite = meowSprite;
             currentNotice = Instantiate(noticePrefab, noticePoint.position, Quaternion.identity, transform);
         }
     }
@@ -77,6 +81,7 @@ public class Cat : MonoBehaviour
     {
         if (currentNotice != null)
         {
+            spriteRenderer.sprite = normalSprite;
             Destroy(currentNotice);
             currentNotice = null;
         }

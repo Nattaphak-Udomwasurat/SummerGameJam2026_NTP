@@ -15,4 +15,4 @@ MonoBehaviour:
   enemyName: 
   moveSpeed: 0
   awarenessRadian: 0
-  splashingRadian: 1
+  splashingRadian: 2.06

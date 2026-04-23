@@ -31,7 +31,7 @@ public class EnergyDrinkUI : MonoBehaviour
 
     void UpdateUI(int current, int max)
     {
-        // 🔥 reset เป็นเทาก่อน
+        //  reset เป็นเทาก่อน
         icon1.color = inactiveColor;
         icon2.color = inactiveColor;
 

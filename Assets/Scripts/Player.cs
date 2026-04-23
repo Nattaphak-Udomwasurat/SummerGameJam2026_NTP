@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     [Header("Sprites")]
     public Sprite normalSprite;
     public Sprite pangHaamYardSprite;
-    public Sprite wetSprite;
     public Sprite drinkingSprite;
     public Sprite throwingSprite;
 
@@ -34,7 +33,6 @@ public class Player : MonoBehaviour
     {
         pangHaamYard.OnBlockStart += HandlePangHaamYardStart;
         pangHaamYard.OnBlockEnd += HandlePangHaamYardEnd;
-        playerTakeWet.OnTakeWet += HandleTakeWet;
 
         drinking.OnDrinkStart += HandleDrinkStart;
         drinking.OnDrinkEnd += HandleDrinkEnd;
@@ -47,7 +45,6 @@ public class Player : MonoBehaviour
     {
         pangHaamYard.OnBlockStart -= HandlePangHaamYardStart;
         pangHaamYard.OnBlockEnd -= HandlePangHaamYardEnd;
-        playerTakeWet.OnTakeWet -= HandleTakeWet;
 
         drinking.OnDrinkStart += HandleDrinkStart;
         drinking.OnDrinkEnd += HandleDrinkEnd;
@@ -108,25 +105,6 @@ public class Player : MonoBehaviour
     private void HandleThrowEnd()
     {
         if (currentState != PlayerState.Throw) return;
-
-        currentState = PlayerState.Normal;
-        spriteRenderer.sprite = normalSprite;
-    }
-
-    private void HandleTakeWet()
-    {
-        if (wetRoutine != null)
-            StopCoroutine(wetRoutine);
-
-        wetRoutine = StartCoroutine(WetFlash());
-    }
-
-    private IEnumerator WetFlash()
-    {
-        currentState = PlayerState.Wet;
-        spriteRenderer.sprite = wetSprite;
-
-        yield return new WaitForSeconds(0.8f);
 
         currentState = PlayerState.Normal;
         spriteRenderer.sprite = normalSprite;

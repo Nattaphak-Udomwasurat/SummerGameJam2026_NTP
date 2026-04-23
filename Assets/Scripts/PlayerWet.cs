@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class PlayerWet : MonoBehaviour
 {
+    [SerializeField] GameObject getWet;
     public int maxWet = 5;
     public int currentWet { get; private set; }
 
     public event Action OnTakeWet;
     public event Action OnGameOver;
+
+    public void Start()
+    {
+        getWet.SetActive(false);
+    }
 
     public void TakeWaterHit()
     {
@@ -30,6 +36,7 @@ public class PlayerWet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Water")
         {
+            StartCoroutine(GetWet());
             TakeWaterHit();
             Destroy(collision.gameObject);
         }
@@ -43,5 +50,12 @@ public class PlayerWet : MonoBehaviour
 
         // เช่น:
         // Time.timeScale = 0f;
+    }
+
+    IEnumerator GetWet()
+    {
+        getWet.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        getWet.SetActive(false);
     }
 }
