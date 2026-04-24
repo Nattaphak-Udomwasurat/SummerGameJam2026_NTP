@@ -961,16 +961,16 @@ MonoBehaviour:
   slots:
   - endingType: 1
     displayImage: {fileID: 1155588924}
-    endingSprite: {fileID: 0}
+    endingSprite: {fileID: 21300000, guid: 7e8a4267749b979459d17e4e6cd75a7c, type: 3}
   - endingType: 2
     displayImage: {fileID: 1281304565}
-    endingSprite: {fileID: 0}
+    endingSprite: {fileID: 21300000, guid: b1c0412a1e390d8498c99a795c69dbfd, type: 3}
   - endingType: 3
     displayImage: {fileID: 775838650}
-    endingSprite: {fileID: 0}
+    endingSprite: {fileID: 21300000, guid: ef3b90748d7db734d83331ee544ed0b9, type: 3}
   - endingType: 4
     displayImage: {fileID: 997627540}
-    endingSprite: {fileID: 0}
+    endingSprite: {fileID: 21300000, guid: 3036679cc87826046ad83d9004ec19c6, type: 3}
   - endingType: 5
     displayImage: {fileID: 1030142522}
     endingSprite: {fileID: 0}
