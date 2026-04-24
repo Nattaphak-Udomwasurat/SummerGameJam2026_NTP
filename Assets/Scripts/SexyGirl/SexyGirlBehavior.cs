@@ -19,6 +19,8 @@ public class SexyGirlBehavior : MonoBehaviour
     private Vector2 patrolTarget;
     private State currentState;
 
+    [SerializeField] private GameObject shadow;
+
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
 
@@ -45,6 +47,8 @@ public class SexyGirlBehavior : MonoBehaviour
     }
     void Update()
     {
+        SetShadow(shadow);
+
         if (enemy == null || player == null) return;
 
         float dist = Vector2.Distance(transform.position, player.position);
@@ -198,6 +202,17 @@ public class SexyGirlBehavior : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         StartCoroutine(AttackRoutine());
+    }
+
+    void SetShadow(GameObject effect)
+    {
+        SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
+        SpriteRenderer effectSR = effect.GetComponent<SpriteRenderer>();
+
+        if (playerSR != null && effectSR != null)
+        {
+            effectSR.sortingOrder = playerSR.sortingOrder - 1;
+        }
     }
 
     private void OnDrawGizmos()

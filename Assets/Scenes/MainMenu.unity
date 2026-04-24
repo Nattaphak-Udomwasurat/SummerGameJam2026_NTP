@@ -489,15 +489,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: SFX
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 01e303d214f60d34fbb4d71a7059d144, type: 2}
+  m_sharedMaterial: {fileID: -3414486386233574583, guid: 01e303d214f60d34fbb4d71a7059d144, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1585,9 +1585,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1520969915}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1174149733}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: OnStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1844,15 +1844,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: BG
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 01e303d214f60d34fbb4d71a7059d144, type: 2}
+  m_sharedMaterial: {fileID: -3414486386233574583, guid: 01e303d214f60d34fbb4d71a7059d144, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3238,17 +3238,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475637438}
   m_CullTransparentMesh: 1
---- !u!114 &1520969915 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5449309665269181617, guid: f6f404bbc5938f2408c5031e608f274d, type: 3}
-  m_PrefabInstance: {fileID: 1812180243}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d823d2f8f99497a4897f101e4c5a1ed4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1630829605
 GameObject:
   m_ObjectHideFlags: 0
@@ -4313,6 +4302,14 @@ PrefabInstance:
     - target: {fileID: 1548131996207252569, guid: 49fae57b31f3c6f4f865309e874aef5b, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243797392045712861, guid: 49fae57b31f3c6f4f865309e874aef5b, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243797392045712861, guid: 49fae57b31f3c6f4f865309e874aef5b, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3360786895262089664, guid: 49fae57b31f3c6f4f865309e874aef5b, type: 3}
       propertyPath: m_LocalPosition.x

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4576812402052168199}
   - component: {fileID: 5046921740164058251}
   - component: {fileID: 2657836594546177300}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,8 +123,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -9.603014, y: -3.2401774}
-  - {x: 9.6067295, y: -3.2279327}
+  - {x: -9.594729, y: -3.3147402}
+  - {x: 9.639868, y: -3.3356345}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -164,8 +164,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -9.6177435, y: 2.5369942}
-  - {x: 9.6451645, y: 2.5042665}
+  - {x: -9.705913, y: 6.0037684}
+  - {x: 10.005096, y: 5.9995427}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

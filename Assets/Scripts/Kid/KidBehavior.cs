@@ -16,6 +16,8 @@ public class KidBehavior : MonoBehaviour
 
     [SerializeField] private float noticeTime = 0.4f;
 
+    [SerializeField] private GameObject shadow;
+
     [SerializeField] private AudioClip splashSFX;
 
     public bool hasAttacked = false;
@@ -35,6 +37,8 @@ public class KidBehavior : MonoBehaviour
 
     private void Update()
     {
+        SetShadow(shadow);
+
         FacePlayer();
 
         if (enemy == null || player == null || hasAttacked) return;
@@ -148,6 +152,17 @@ public class KidBehavior : MonoBehaviour
         if (Mathf.Abs(dirX) > 0.05f)
         {
             spriteRenderer.flipX = dirX > 0;
+        }
+    }
+
+    void SetShadow(GameObject effect)
+    {
+        SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
+        SpriteRenderer effectSR = effect.GetComponent<SpriteRenderer>();
+
+        if (playerSR != null && effectSR != null)
+        {
+            effectSR.sortingOrder = playerSR.sortingOrder - 1;
         }
     }
 

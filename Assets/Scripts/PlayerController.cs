@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Freeze playerFreeze;
     [SerializeField] private Player player;
+    [SerializeField] private GameObject shadowPrefab;
 
     public Vector2 MoveInput => moveInput;
 
@@ -16,13 +17,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        SetShadow(shadowPrefab);
     }
 
     private void FixedUpdate()
@@ -40,5 +41,16 @@ public class PlayerController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+    }
+
+    void SetShadow(GameObject effect)
+    {
+        SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
+        SpriteRenderer effectSR = effect.GetComponent<SpriteRenderer>();
+
+        if (playerSR != null && effectSR != null)
+        {
+            effectSR.sortingOrder = playerSR.sortingOrder - 1;
+        }
     }
 }

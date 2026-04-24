@@ -27,12 +27,12 @@ public class Cat : MonoBehaviour
 
         float dist = Vector2.Distance(transform.position, player.position);
 
-        // 🟡 อยู่ในระยะ → แสดง notice
+        // อยู่ในระยะ → แสดง notice
         if (dist <= enemy.splashingRadian)
         {
             ShowNotice();
 
-            // 🔥 เช็ค block = ลูบแมว
+            // เช็ค block = ลูบแมว
             if (pangHaamYard != null && pangHaamYard.IsBlocking)
             {
                 TriggerCatEnding();
@@ -46,7 +46,7 @@ public class Cat : MonoBehaviour
 
     void HandleNotice(float dist)
     {
-        // 🎯 อยู่ในระยะ → ต้องมี notice
+        //  อยู่ในระยะ → ต้องมี notice
         if (dist <= enemy.splashingRadian)
         {
 
@@ -89,7 +89,7 @@ public class Cat : MonoBehaviour
 
     void TriggerCatEnding()
     {
-        Debug.Log("🐱 Cat Lover Ending!");
+        Debug.Log("Cat Lover Ending!");
 
         GameManager.Instance.SetEnding(GameManager.EndingType.CatLover);
         GameManager.Instance.TriggerGameOver();

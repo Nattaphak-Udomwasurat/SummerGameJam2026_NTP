@@ -258,10 +258,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d1dc7d77ff5f74ba7e5856dc3c1848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ySortLayers:
+  - Default
+  - Damagable
   spriteRenderer: {fileID: 4426728599244940612}
   offset: 0
-  isBG: 0
-  bgSortingOrder: -9999
 --- !u!114 &7811611208320030389
 MonoBehaviour:
   m_ObjectHideFlags: 0

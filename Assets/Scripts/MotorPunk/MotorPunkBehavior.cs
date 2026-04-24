@@ -36,6 +36,7 @@ public class MotorPunkBehavior : MonoBehaviour
     private bool isPlayingPatrolSFX = false;
     private bool hasAttacked = false;
     private bool isAttacking = false;
+    private bool hasHitPlayer = false;
 
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
@@ -63,16 +64,16 @@ public class MotorPunkBehavior : MonoBehaviour
 
         float dist = Vector2.Distance(transform.position, player.position);
 
-        // 🎯 1. คำนวณ State ก่อน
+        //  1. คำนวณ State ก่อน
         if (dist <= enemy.awarenessRadian)
             currentState = StatePunk.Chase;
         else
             currentState = StatePunk.Patrol;
 
-        // 🎯 2. จัดการ Notice ตาม state
+        // 2. จัดการ Notice ตาม state
         HandleNotice();
 
-        // 🎯 3. อัปเดตตำแหน่ง notice
+        // 3. อัปเดตตำแหน่ง notice
         if (currentNotice != null)
         {
             currentNotice.transform.position = noticePoint.position;
@@ -135,7 +136,7 @@ public class MotorPunkBehavior : MonoBehaviour
     {
         Vector2 dir = (target - (Vector2)transform.position).normalized;
 
-        // 🔥 หันตามทิศ
+        // หันตามทิศ
         if (dir.x > 0)
             transform.localScale = new Vector3(1, 1, 1);
         else if (dir.x < 0)
@@ -147,7 +148,7 @@ public class MotorPunkBehavior : MonoBehaviour
 
         float currentSpeed = enemy.moveSpeed;
 
-        // 🔥 ถ้าเข้า splashingRadian → เร็วขึ้น
+        // ถ้าเข้า splashingRadian → เร็วขึ้น
         if (dist <= enemy.splashingRadian)
         {
             currentSpeed *= chaseSpeedMultiplier;
@@ -158,17 +159,22 @@ public class MotorPunkBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (hasHitPlayer) return; // กันซ้ำ
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit Player!");
+            hasHitPlayer = true;
 
-            // ตัวอย่าง:
             var wet = collision.gameObject.GetComponent<PlayerWet>();
             if (wet != null)
             {
-                wet.TakeWaterHit(); // หรือเปลี่ยนเป็น damage ก็ได้
+                wet.TakeWaterHit();
             }
-            Destroy(currentNotice);
+
+            if (currentNotice != null)
+                Destroy(currentNotice);
+
+            // ปิด script กันทำงานซ้ำ
             enabled = false;
         }
     }

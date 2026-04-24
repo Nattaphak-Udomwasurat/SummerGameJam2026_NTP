@@ -176,6 +176,7 @@ MonoBehaviour:
   attackChance: 0.7
   splashDelayRange: {x: 0.2, y: 1.2}
   noticeTime: 0.7
+  shadow: {fileID: 1254377896818058970}
   splashSFX: {fileID: 8300000, guid: 1c21bd755b1a31a408c2feb4ce70dce7, type: 3}
   hasAttacked: 0
   didSplash: 0
@@ -337,6 +338,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+--- !u!1 &1254377896818058970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7457265852663674999, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+  m_PrefabInstance: {fileID: 8508977298624093869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5161164863903495388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}

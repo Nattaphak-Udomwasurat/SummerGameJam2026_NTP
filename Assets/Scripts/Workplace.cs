@@ -5,6 +5,9 @@ using UnityEngine;
 public class Workplace : MonoBehaviour
 {
     [SerializeField] private PlayerWet playerWet;
+    [SerializeField] private GameObject noticePrefab;
+    [SerializeField] private Transform noticePoint;
+    private GameObject currentNotice;
 
     private PangHaamYard playerBlock;
     private bool isPlayerInside = false;
@@ -15,6 +18,8 @@ public class Workplace : MonoBehaviour
         {
             isPlayerInside = true;
             playerBlock = collision.GetComponent<PangHaamYard>();
+
+            ShowNotice();
         }
     }
 
@@ -23,6 +28,9 @@ public class Workplace : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInside = false;
+            playerBlock = null;
+
+            HideNotice();
         }
     }
 
@@ -36,9 +44,26 @@ public class Workplace : MonoBehaviour
         }
     }
 
+    void ShowNotice()
+    {
+        if (currentNotice == null)
+        {
+            currentNotice = Instantiate(noticePrefab, noticePoint.position, Quaternion.identity, transform);
+        }
+    }
+
+    void HideNotice()
+    {
+        if (currentNotice != null)
+        {
+            Destroy(currentNotice);
+            currentNotice = null;
+        }
+    }
+
     void EnterWork()
     {
-        Debug.Log("🏢 Enter Work!");
+        Debug.Log("Enter Work!");
 
         if (playerWet.currentWet > 0)
         {

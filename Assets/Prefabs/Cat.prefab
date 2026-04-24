@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d1dc7d77ff5f74ba7e5856dc3c1848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 5886042812183006955}
   offset: 0
-  isBG: 1
+  isBG: 0
   bgSortingOrder: -9999

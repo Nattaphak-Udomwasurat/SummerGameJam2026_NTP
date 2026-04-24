@@ -177,6 +177,7 @@ MonoBehaviour:
   splashForce: 7
   splashPoint: {fileID: 4455346444375780984}
   noticePoint: {fileID: 1677602381450810437}
+  shadow: {fileID: 6461041534412815326}
   pointA: {fileID: 5601384978816237957}
   pointB: {fileID: 6050439536899971169}
   attackChance: 0.7
@@ -479,6 +480,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
   m_PrefabInstance: {fileID: 4528295498164159401}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6461041534412815326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7457265852663674999, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+  m_PrefabInstance: {fileID: 4528295498164159401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6980659020834164829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6789163963744588788, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
@@ -498,5 +504,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   offset: 0
-  isBG: 1
+  isBG: 0
   bgSortingOrder: -9999

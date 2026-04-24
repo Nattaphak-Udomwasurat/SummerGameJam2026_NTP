@@ -19,6 +19,7 @@ public class YSorter : MonoBehaviour
             return;
         }
 
+
         spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 1000) + offset;
     }
 }

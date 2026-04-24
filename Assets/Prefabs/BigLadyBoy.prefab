@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7287650732346369523}
   - component: {fileID: 2923775266981111241}
   - component: {fileID: 9164431406440992856}
+  - component: {fileID: 8711637912461260169}
   m_Layer: 6
   m_Name: BigLadyBoy
   m_TagString: Untagged
@@ -160,9 +161,25 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.8, y: 1.8}
+  m_Offset: {x: 0, y: -0.21277106}
+  m_Size: {x: 1.8, y: 2.2255418}
   m_Direction: 0
+--- !u!114 &8711637912461260169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5035992377563411199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d1dc7d77ff5f74ba7e5856dc3c1848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  offset: 0
+  isBG: 0
+  bgSortingOrder: -9999
 --- !u!1 &5405187404318455640
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_LocalPosition.z
@@ -245,6 +262,22 @@ PrefabInstance:
     - target: {fileID: 3581999821506734705, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965793565669275241, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965793565669275241, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5940594
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965793565669275241, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5940594
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965793565669275241, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6789163963744588788, guid: 1a3dcba3fe1b6904eb7e1c4871ff3183, type: 3}
       propertyPath: m_Name

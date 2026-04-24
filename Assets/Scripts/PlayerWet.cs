@@ -65,6 +65,9 @@ public class PlayerWet : MonoBehaviour
     IEnumerator GetWet()
     {
         getWet.SetActive(true);
+
+        SetEffectOnTop(getWet);
+
         yield return new WaitForSeconds(1f);
         getWet.SetActive(false);
     }
@@ -72,7 +75,21 @@ public class PlayerWet : MonoBehaviour
     IEnumerator GetDinsorpong()
     {
         getDinsorpong.SetActive(true);
+
+        SetEffectOnTop(getDinsorpong);
+
         yield return new WaitForSeconds(1f);
         getDinsorpong.SetActive(false);
+    }
+
+    void SetEffectOnTop(GameObject effect)
+    {
+        SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
+        SpriteRenderer effectSR = effect.GetComponent<SpriteRenderer>();
+
+        if (playerSR != null && effectSR != null)
+        {
+            effectSR.sortingOrder = playerSR.sortingOrder + 1;
+        }
     }
 }
