@@ -989,6 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  freeze: {fileID: 0}
   phmSFX: {fileID: 8300000, guid: 33d0b91a3f27aab4695b8bd744cfaaaa, type: 3}
   blockDuration: 0.5
   maxCharges: 4
@@ -1168,7 +1169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbaca619781b054da5c4b7055466f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 112618815656866776}
+  freeze: {fileID: 3730261916557245085}
   inventory: {fileID: 4928285159032798558}
   blockSystem: {fileID: 343982005908385020}
   restoreAmount: 2
@@ -1188,8 +1190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba0bdcfc986a7b41ae14c892c20b5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 112618815656866776}
   throwSFX: {fileID: 8300000, guid: d7624ac723438684b86e2298ef5cee09, type: 3}
+  freeze: {fileID: 3730261916557245085}
   inventory: {fileID: 4928285159032798558}
   projectilePrefab: {fileID: 8100945217323484343, guid: 114516e8b97729e489c138d1b67f8056, type: 3}
   throwPoint: {fileID: 4536370214053407760}
@@ -1211,8 +1214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 0}
-  player: {fileID: 0}
-  freeze: {fileID: 0}
+  player: {fileID: 112618815656866776}
+  freeze: {fileID: 3730261916557245085}
   controller: {fileID: 0}
   walkSprites: []
   walkDelay: 0.3
@@ -1295,7 +1298,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 985ae5bd12a1e18468ec1481a090a644, type: 3}
   delayBefore: 0.2
   delayAfter: 0.2
-  freeze: {fileID: 0}
+  freeze: {fileID: 3730261916557245085}
   freezeSprite: {fileID: 0}
 --- !u!114 &2430840823579299201
 MonoBehaviour:
@@ -1326,8 +1329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunDuration: 2
-  disableScripts:
-  - {fileID: 112618815656866776}
 --- !u!1001 &6470619485206743894
 PrefabInstance:
   m_ObjectHideFlags: 0
