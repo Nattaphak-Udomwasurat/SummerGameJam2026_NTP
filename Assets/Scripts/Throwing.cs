@@ -15,6 +15,8 @@ public class Throwing : MonoBehaviour
 
     [SerializeField] private AudioClip throwSFX;
 
+    [SerializeField] private Freeze freeze;
+
     [SerializeField] private EnergyDrinkInventory inventory;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform throwPoint;
@@ -60,6 +62,9 @@ public class Throwing : MonoBehaviour
         if (!context.performed) return;
 
         if (IsThrowing) return;
+
+        // เพิ่มตรงนี้
+        if (freeze != null && freeze.IsStunned) return;
 
         if (player != null && player.IsBusy()) return;
 

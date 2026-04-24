@@ -16,6 +16,8 @@ public class PangHaamYard : MonoBehaviour
 
     [SerializeField] private Player player;
 
+    [SerializeField] private Freeze freeze;
+
     [SerializeField] private AudioClip phmSFX;
 
     [Header("Block Settings")]
@@ -37,6 +39,9 @@ public class PangHaamYard : MonoBehaviour
     public void OnStop(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+
+        // เพิ่มตรงนี้
+        if (freeze != null && freeze.IsStunned) return;
 
         if (currentCharges <= 0) return;
 

@@ -13,6 +13,8 @@ public class Drinking : MonoBehaviour
 
     [SerializeField] private Player player;
 
+    [SerializeField] private Freeze freeze;
+
     [SerializeField] private EnergyDrinkInventory inventory;
     [SerializeField] private PangHaamYard blockSystem;
     [SerializeField] private int restoreAmount = 2;
@@ -31,7 +33,9 @@ public class Drinking : MonoBehaviour
 
         if (IsDrinking) return;
 
-        // 🔥 สำคัญ: ล็อค state จาก Player
+        //  เพิ่มตรงนี้
+        if (freeze != null && freeze.IsStunned) return;
+
         if (player != null && player.IsBusy()) return;
 
         if (inventory == null || !inventory.UseDrink())
