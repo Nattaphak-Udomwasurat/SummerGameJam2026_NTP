@@ -7,6 +7,8 @@ public class BigLadyBoyBehavior : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Freeze playerFreeze;
 
+    [SerializeField] private LineRenderer lineRenderer;
+
     [SerializeField] private AudioClip ladyboySFX;
 
     [SerializeField] private GameObject noticePrefab;
@@ -24,6 +26,15 @@ public class BigLadyBoyBehavior : MonoBehaviour
     private bool isDashing = false;
 
     private Vector2 dashTarget;
+
+    void Start()
+    {
+        if (lineRenderer != null)
+        {
+            lineRenderer.positionCount = 2;
+            lineRenderer.enabled = false;
+        }
+    }
 
     void Update()
     {
@@ -46,10 +57,31 @@ public class BigLadyBoyBehavior : MonoBehaviour
 
         dashTarget = player.position;
 
-        yield return new WaitForSeconds(noticeTime);
+        //  เปิดเส้น
+        if (lineRenderer != null)
+            lineRenderer.enabled = true;
+
+        float timer = 0f;
+
+        while (timer < noticeTime)
+        {
+            // อัปเดตเส้นตลอดเวลา
+            if (lineRenderer != null)
+            {
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, dashTarget);
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
         if (currentNotice != null)
             Destroy(currentNotice);
+
+        //  ปิดเส้นก่อน dash
+        if (lineRenderer != null)
+            lineRenderer.enabled = false;
 
         isPreparing = false;
 

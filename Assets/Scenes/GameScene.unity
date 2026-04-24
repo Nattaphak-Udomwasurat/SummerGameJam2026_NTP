@@ -6434,6 +6434,26 @@ PrefabInstance:
     - target: {fileID: 7287650732346369523, guid: 9a56519f57042974fb836a87ac907906, type: 3}
       propertyPath: playerFreeze
       value: 
+      objectReference: {fileID: 1744962638}
+    - target: {fileID: 7822708892816829490, guid: 9a56519f57042974fb836a87ac907906, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822708892816829490, guid: 9a56519f57042974fb836a87ac907906, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822708892816829490, guid: 9a56519f57042974fb836a87ac907906, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822708892816829490, guid: 9a56519f57042974fb836a87ac907906, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822708892816829490, guid: 9a56519f57042974fb836a87ac907906, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

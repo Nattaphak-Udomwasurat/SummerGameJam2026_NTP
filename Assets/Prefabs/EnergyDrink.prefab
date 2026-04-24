@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ab2ee3c60597a489eb89b7a56c67a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laneTolerance: 2
+  laneTolerance: 10
   pickSFX: {fileID: 8300000, guid: a6913e30d98e68b44ae29dfa31c7e9c8, type: 3}
 --- !u!70 &1978103110777167704
 CapsuleCollider2D:
